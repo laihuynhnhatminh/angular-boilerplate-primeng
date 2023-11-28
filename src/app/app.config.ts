@@ -1,8 +1,10 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { jwtInterceptor, serverErrorInterceptor } from '@core/interceptors';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -10,5 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([jwtInterceptor, serverErrorInterceptor])
     ),
+    importProvidersFrom([BrowserAnimationsModule]),
   ],
 };
